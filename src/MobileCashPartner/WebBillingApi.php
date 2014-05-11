@@ -24,8 +24,8 @@ class WebBillingApi{
 	}
 
 	/**
-	 * starts web billing
-	 * @return stdClass result
+	 * Initial billing request
+	 * @return stdClass Answer
 	 */
 	public function startWebBilling(){
 		$data['destination'] = $this->getDestination();
@@ -37,6 +37,10 @@ class WebBillingApi{
 		return $this->makeRequest('start', $data);
 	}
 
+	/**
+	 * Checks if TAN is valid
+	 * @return stdClass Answer
+	 */
 	public function checkTan(){
 		$data['tan'] = $this->getTan();
 		$data['RequestID'] = $this->getRequestId();
@@ -45,6 +49,10 @@ class WebBillingApi{
 		return $this->makeRequest('checktan', $data);
 	}
 
+	/**
+	 * Makes the final booking call
+	 * @return stdClass Answer
+	 */
 	public function booking(){
 		$data['RequestID'] = $this->getRequestId();
 		$data['TransactionID'] = $this->getTransactionId();
